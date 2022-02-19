@@ -1,0 +1,37 @@
+{% extends "base.html" %}
+{% import "helpers.html" as helpers with context %}
+
+{% block title %}{{ SITENAME }} - Authors{% endblock %}
+
+{% block content %}
+<div class="hero">
+  <div class="hero-box">
+    <div class="container">
+      <header class="post-cover" style="background-image: url('/theme/images/starring.png'); background-size: initial; background-repeat: repeat;">
+        <div class="post-overlay"></div>
+        <div class="content">
+          <div class="post-title-group">
+            <a class="post-title-link" href="#">
+              <h2 class="post-title">作者团队</h2>
+            </a>
+            <div class="post-meta">共 {{ authors|length }} 名作者</div>
+          </div>
+        </div>
+      </header><!-- kagami:post-cover -->
+      <div class="hero-box-summary">
+        <p>「专家没有灵魂，纵欲者没有心肝」—— 马克斯·韦伯</p>
+      </div>
+    </div>
+  </div><!-- kagami:non-singular:hero-box -->
+  <div class="hero-background-wrapper">
+    <div class="hero-background" style="background-image: url('/theme/images/starring.png'); background-size: initial; background-repeat: repeat;"></div>
+  </div>
+</div><!-- kagami:hero -->
+<div class="fill without-pagination">
+  <div class="container post-list">
+    {% for author, articles in authors|sort %}
+    {{ helpers.taxonomy_cover(author, articles, type="author") }}
+    {% endfor %}
+  </div>
+</div><!-- kagami:fill -->
+{% endblock %}

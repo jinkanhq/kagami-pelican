@@ -1,0 +1,9 @@
+{% extends "base.html" %}
+{% import "helpers.html" as helpers with context %}
+
+{% block title %}{{ SITENAME }} - 作者：{{ helpers.author_display_name(author) }}{% endblock %}
+
+{% block content %}
+{{ helpers.archive_page(author, type="author") }}
+{% endblock %}
+

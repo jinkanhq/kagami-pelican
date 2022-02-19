@@ -1,0 +1,21 @@
+{% extends "base.html" %}
+{% import "helpers.html" as helpers with context %}
+{% block html_lang %}{{ page.lang }}{% endblock %}
+
+{% block title %}{{ SITENAME }} - {{ page.title|striptags }}{% endblock %}
+
+{% block main %}
+<main class="singular page" id="site-content" role="main">
+  {{ helpers.article_hero(page, is_singular=True) }}
+  <div class="fill">
+    <div class="hero-box">
+      <div class="container">
+        {{ helpers.post_cover(page, is_hero=True, is_page=True) }}
+        <div class="hero-box-content">
+          {{ page.content }}
+        </div><!-- kagami:singular:hero-box-content -->
+      </div>
+    </div><!-- kagami:singular:hero-box -->
+  </div><!-- kagami:fill -->
+</main>
+{% endblock %}

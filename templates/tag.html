@@ -1,0 +1,8 @@
+{% extends "base.html" %}
+{% import "helpers.html" as helpers with context %}
+
+{% block title %}{{ SITENAME }} - 标签：{{ helpers.taxonomy_display_name(tag, type="tag") }}{% endblock %}
+
+{% block content %}
+{{ helpers.archive_page(tag, type="tag") }}
+{% endblock %}

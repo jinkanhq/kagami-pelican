@@ -1,0 +1,55 @@
+{% extends "base.html" %}
+{% import "helpers.html" as helpers with context %}
+{% block html_lang %}{{ article.lang }}{% endblock %}
+
+{% block title %}{{ SITENAME }} - {{ article.title|striptags  }}{% endblock %}
+
+{% block head %}
+  {{ super() }}
+
+  {% import 'translations.html' as translations with context %}
+  {% if translations.entry_hreflang(article) %}
+    {{ translations.entry_hreflang(article) }}
+  {% endif %}
+
+  {% if article.description %}
+    <meta name="description" content="{{article.description}}" />
+  {% endif %}
+
+  {% for tag in article.tags %}
+    <meta name="tags" content="{{tag}}" />
+  {% endfor %}
+
+{% endblock %}
+
+{% block main %}
+<main class="singular post" id="site-content" role="main">
+  {{ helpers.article_hero(article, is_singular=True) }}
+  <div class="fill">
+    <div class="hero-box">
+      <div class="container">
+        {{ helpers.post_cover(article, is_hero=True, is_article=True) }}
+        <div class="hero-box-content">
+          {{ article.content }}
+          <div class="divider">
+            <div class="inner-text">标签</div>
+          </div>
+          <div class="post-tags">
+          {% for tag in article.tags %}
+            <a class="btn post-tag" href="/{{ tag.url }}">{{ tag.name }}</a>
+          {% endfor %}
+          </div>
+          <div class="divider">
+            <div class="inner-text">作者</div>
+          </div>
+          <div class="post-author">
+            <div class="post-author-avatar"><img class="avatar" alt="{{ helpers.author_display_name(article.author) }}" src="{{ helpers.author_avatar(article.author) }}" /></div>
+            <div class="post-author-name">{{ helpers.author_display_name(article.author) }}</div>
+            <div class="post-author-description">{{ helpers.author_description(article.author) }}</div>
+          </div>
+        </div><!-- kagami:singular:hero-box-content -->
+      </div>
+    </div><!-- kagami:singular:hero-box -->
+  </div><!-- kagami:fill -->
+</main>
+{% endblock %}

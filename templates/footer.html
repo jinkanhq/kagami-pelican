@@ -1,0 +1,18 @@
+{% import "badges.html" as badges %}
+
+<div class="footer-holder"></div>
+<footer class="bottom">
+  <div class="footer-logo"></div>
+  <p class="slogan">{{ KAGAMI_SLOGAN }}</p>
+  <p>&copy; {{ KAGAMI_COPYRIGHT_YEAR }} {{ KAGAMI_COPYRIGHT_HOLDER }}, some rights reserved.</p>
+  <p class="badges">
+    {% for badge in KAGAMI_CACHED_BADGES %}
+    <a href="{{ badge.link }}"><img src="/images/badges/{{ badge.filename }}" /></a>
+    {% endfor %}
+  </p>
+  <p class="links">
+    {% for link in KAGAMI_FOOTER_LINKS %}
+      <a href="{{ link.url }}">{{ link.name }}</a>{% if not loop.last %} · {% endif %}
+    {% endfor %}
+  </p>
+</footer><!-- kagami:footer -->

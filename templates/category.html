@@ -1,0 +1,9 @@
+{% extends "base.html" %}
+{% import "helpers.html" as helpers with context %}
+
+{% block title %}{{ SITENAME }} - 分类：{{ helpers.taxonomy_display_name(category, type="category") }}{% endblock %}
+
+{% block content %}
+{{ helpers.archive_page(category, type="category") }}
+{% endblock %}
+

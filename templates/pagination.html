@@ -1,0 +1,31 @@
+{% if DEFAULT_PAGINATION %}
+{% set first_page = articles_paginator.page(1) %}
+{% set last_page = articles_paginator.page(articles_paginator.num_pages) %}
+
+{% macro page_link(articles_paginator, page_number) %}
+{% set page = articles_paginator.page(page_number) %}
+<a href="{{ page.url }}" class="page-numbers">{{ page_number }}</a>
+{% endmacro%}
+
+<nav class="container pagination">
+  {% if articles_page.has_previous() %}
+  <a class="previous page-numbers" href="{{ SITEURL }}/{{ articles_previous_page.url }}">上一页</a>
+  {% endif %}
+  {% if articles_page.number > 2 %}
+  {{ page_link(articles_paginator, articles_page.number - 2) }}
+  {% endif %}
+  {% if articles_page.number > 1 %}
+  {{ page_link(articles_paginator, articles_page.number - 1) }}
+  {% endif %}
+  <span class="page-numbers current">{{ articles_page.number }}</span>
+  {% if articles_paginator.num_pages > articles_page.number %}
+  {{ page_link(articles_paginator, articles_page.number + 1) }}
+  {% endif %}
+  {% if articles_paginator.num_pages > articles_page.number + 1 %}
+  {{ page_link(articles_paginator, articles_page.number + 2) }}
+  {% endif %}
+  {% if articles_page.has_next() %}
+  <a class="next page-numbers" href="{{ SITEURL }}/{{ articles_next_page.url }}">下一页</a>
+  {% endif %}
+</nav>
+{% endif %}

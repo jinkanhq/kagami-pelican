@@ -1,0 +1,130 @@
+{% macro cover_url(article) %}{{ article.feature|default("/theme/images/fallback_cover.jpg") }}{% endmacro %}
+{% macro author_display_name(author) %}{{ KAGAMI_AUTHORS.get(author.name).display_name | default(author.name) }}{% endmacro %}
+{% macro author_description(author) %}{{ KAGAMI_AUTHORS.get(author.name).description | default("Nothing...") }}{% endmacro %}
+{% macro author_avatar(author) %}{{ KAGAMI_AUTHORS.get(author.name).avatar | default("/theme/images/lab_logo_squa_white_blue.png") }}{% endmacro %}
+{% macro taxonomy_display_name(taxonomy, type) %}{{ KAGAMI_TAXONOMIES.get(type).get(taxonomy.name).display_name | default(taxonomy.name) }}{% endmacro %}
+{% macro taxonomy_description(taxonomy, type) %}{{ KAGAMI_TAXONOMIES.get(type).get(taxonomy.name).description | default("Nothing...") }}{% endmacro %}
+{% macro taxonomy_feature(taxonomy, type) %}{{ KAGAMI_TAXONOMIES.get(type).get(taxonomy.name).feature | default("/theme/images/fallback_archive_cover.jpg") }}{% endmacro %}
+
+{% macro post_cover(article, is_hero=False, is_page=False, is_article=False) %}
+{% if is_hero %}
+{% set html_tag = 'header' %}
+{% else %}
+{% set html_tag = 'div' %}
+{% endif %}
+<{{ html_tag }} class="post-cover" style="background-image: url('{{ article.feature|default("/theme/images/fallback_cover.jpg") }}')">
+  <div class="post-overlay"></div>
+  <div class="content">
+    {% if is_page %}
+    <a class="post-category" href="javascript:;">页面</a>
+    {% else %}
+    <a class="post-category" href="/{{ article.category.url }}">{{ taxonomy_display_name(article.category, type="category") }}</a>
+    {% endif %}
+    <div class="post-title-group">
+      <a class="post-title-link" href="/{{ article.url }}">
+        <h2 class="post-title">{{ article.title }}</h2>
+      </a>
+      <div class="post-meta">
+        <span class="post-time">发布于 {{ article.date|strftime('%Y-%m-%d %H:%m') }}</span>
+        {% if not is_page %}
+        <span class="post-comments">0 条评论</span>
+        {% endif %}
+      </div>
+    </div>
+    {% if not is_page and not is_article %}
+    <a href="/{{ article.author.url }}">
+      <div class="post-author">
+        <img class="post-author-avatar" src="{{ author_avatar(article.author) }}" /><span class="post-author-name">{{ author_display_name(article.author) }}</span>
+      </div>
+    </a>
+    {% endif %}
+  </div>
+</{{ html_tag }}><!-- kagami:post-cover -->
+{% endmacro %}
+
+{% macro article_hero(article, is_singular=False) %}
+<div class="hero">
+  {% if not is_singular %}
+  <div class="hero-box">
+    <div class="container">
+      {{ post_cover(article, is_hero=not is_singular) }}
+      <div class="hero-box-summary">
+        <p>{{ article.abstract|truncate(120) }}...</p>
+        <a class="btn" href="/{{ article.url }}">更多内容</a>
+      </div>
+    </div>
+  </div><!-- kagami:non-singular:hero-box -->
+  {% endif %}
+  <div class="hero-background-wrapper">
+    <div class="hero-background" style="background-image: url('{{ cover_url(article) }}')"></div>
+  </div>
+</div><!-- kagami:hero -->
+{% endmacro %}
+
+{% macro archive_hero(taxonomy, type) %}
+<div class="hero">
+  <div class="hero-box">
+    <div class="container">
+      <header class="post-cover" style="background-image: url('{{ taxonomy_feature(taxonomy, type) }}')">
+        <div class="post-overlay"></div>
+        <div class="content">
+          <div class="post-title-group">
+            <a class="post-title-link" href="/{{ taxonomy.url }}">
+              {% if type == "author" %}
+              <div class="author-title-wrapper">
+                <img class="post-author-avatar" src="{{ author_avatar(taxonomy) }}" />
+              {% endif %}
+              <h2 class="post-title">{{ taxonomy_display_name(taxonomy, type) }}</h2>
+              {% if type == "author" %}
+              </div>
+              {% endif %}
+            </a>
+            <div class="post-meta">{{ articles|length }} 篇文章</div>
+          </div>
+        </div>
+      </header><!-- kagami:post-cover -->
+      <div class="hero-box-summary">
+        <p>{{ taxonomy_description(taxonomy, type) }}</p>
+      </div>
+    </div>
+  </div><!-- kagami:non-singular:hero-box -->
+  <div class="hero-background-wrapper">
+    <div class="hero-background" style="background-image: url('{{ taxonomy_feature(taxonomy, type) }}')"></div>
+  </div>
+</div><!-- kagami:hero -->
+{% endmacro %}
+
+{% macro archive_page(taxonomy, type) %}
+{{ archive_hero(taxonomy, type) }}
+<div class="fill">
+  <div class="container post-list">
+  {% for article in articles_page.object_list %}
+  {{ post_cover(article) }}
+  {% endfor %}
+  </div>
+  {% include 'pagination.html' %}
+</div><!-- kagami:fill -->
+{% endmacro %}
+
+{% macro taxonomy_cover(taxonomy, articles, type) %}
+<div class="post-cover" style="background-image: url('{{ taxonomy_feature(taxonomy, type) }}')">
+  <div class="post-overlay"></div>
+  <div class="content">
+    <div class="post-title-group">
+      <a class="post-title-link" href="/{{ taxonomy.url }}">
+        {% if type == "author" %}
+        <div class="author-title-wrapper">
+          <img class="post-author-avatar" src="{{ author_avatar(taxonomy) }}" />
+        {% endif %}
+        <h2 class="post-title">{{ taxonomy_display_name(taxonomy, type) }}</h2>
+        {% if type == "author" %}
+        </div>
+        {% endif %}
+      </a>
+      <div class="post-meta">
+        {{ articles|length }} 篇文章
+      </div>
+    </div>
+  </div>
+</div><!-- kagami:post-cover -->
+{% endmacro %}

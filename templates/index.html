@@ -1,0 +1,21 @@
+{% extends "base.html" %}
+{% import "helpers.html" as helpers with context %}
+
+{% block content_title %}
+{% endblock %}
+
+{% set hero_article = articles_page.object_list[0] %}
+{% block content %}
+{{ helpers.article_hero(hero_article, is_singular=False) }}
+<div class="fill">
+  <div class="container post-list">
+  {% for article in articles_page.object_list %}
+  {% if loop.first %}
+  {% else %}
+  {{ helpers.post_cover(article) }}
+  {% endif %}
+  {% endfor %}
+  </div>
+  {% include 'pagination.html' %}
+</div><!-- kagami:fill -->
+{% endblock content %}
