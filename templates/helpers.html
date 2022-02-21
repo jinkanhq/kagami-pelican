@@ -27,7 +27,13 @@
       <div class="post-meta">
         <span class="post-time">发布于 {{ article.date|strftime('%Y-%m-%d %H:%m') }}</span>
         {% if not is_page %}
-        <span class="post-comments">0 条评论</span>
+        <span class="post-comments">
+          {% if KAGAMI_ENABLE_ISSO %}
+          <a href="/{{ article.url }}#isso-thread">Comments</a>
+          {% else %}
+          0 条评论
+          {% endif %}
+        </span>
         {% endif %}
       </div>
     </div>
