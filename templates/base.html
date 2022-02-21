@@ -78,5 +78,8 @@
   </main><!-- kagami:main -->
   {% endblock %}
   {% include "footer.html" %}
+  {% if KAGAMI_ENABLE_ISSO %}
+  <script data-isso="{{ KAGAMI_ISSO }}" src="{{ KAGAMI_ISSO }}js/embed.min.js"></script>
+  {% endif %}
 </body>
 </html>
