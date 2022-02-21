@@ -565,7 +565,8 @@ footer.bottom .footer-logo {
 .singular .post-author .avatar {
     width: 96px;
     height: 96px;
-    border-radius: 48px;
+    border-radius: 96px;
+    border: none;
 }
 
 .singular .post-author .post-author-name {
