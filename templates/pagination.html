@@ -4,7 +4,7 @@
 
 {% macro page_link(articles_paginator, page_number) %}
 {% set page = articles_paginator.page(page_number) %}
-<a href="{{ page.url }}" class="page-numbers">{{ page_number }}</a>
+<a href="{{ SITEURL }}/{{ page.url }}" class="page-numbers">{{ page_number }}</a>
 {% endmacro%}
 
 <nav class="container pagination">
