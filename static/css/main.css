@@ -534,18 +534,24 @@ footer.bottom .footer-logo {
     text-shadow: 0 -1px 0 rgba(0,0,0,.12);
 }
 
-.singular .hero-box-content pre {
-    background-color: #efeff2;
-    overflow: auto;
-    padding: 8px;
+
+.singular .hero-box-content .highlight {
+    width: 760px;
+    margin-left: -40px;
 }
 
-.singular .hero-box-content pre code {
+.singular .hero-box-content .highlight pre {
+    background-color: #efeff2;
+    overflow: auto;
+    padding: 24px 40px;
+}
+
+/* .singular .hero-box-content pre code {
     color: #333;
     background: transparent;
     text-shadow: 0 -1px 0 rgba(0,0,0,.12);
     box-shadow: none;
-}
+} */
 
 .singular .hero-box-content table {
     border-spacing: 0;
@@ -577,13 +583,36 @@ footer.bottom .footer-logo {
     font-size: 12px;
 }
 
-
 .singular .post-tag {
     font-size: 12px;
     padding: 4px 8px;
     margin-right: 4px;
     margin-bottom: 4px;
 }
+
+.singular table.docutils.citation,
+.singular table.docutils.footnote  {
+    width: 100%;
+}
+
+.singular table.docutils.citation td.label {
+    width: 25%;
+}
+
+.singular a.footnote-reference {
+    vertical-align: super;
+    font-size: 12px;    
+}
+
+.singular table.docutils.footnote td {
+    border: none;
+    font-size: 14px;
+}
+
+.singular table.docutils.footnote td.label {
+    min-width: 20px;
+}
+
 
 /* Taxonomies */
 
@@ -612,12 +641,6 @@ footer.bottom .footer-logo {
     .content {
         padding: 32px;
     }
-    /* .hero-box>.container {
-        box-shadow: none;
-    }
-    .post-cover {
-        box-shadow: none;
-    } */
     .post-cover .post-author {
         bottom: 28px;
         right: 32px;
@@ -650,5 +673,8 @@ footer.bottom .footer-logo {
     }
     .singular .post-cover .post-title-group {
         width: calc(100% - 80px);
+    }
+    .singular .hero-box-content .highlight {
+        width: 100vw;
     }
 }
