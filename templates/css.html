@@ -11,44 +11,23 @@
         --text-color: {{ kagami_text_color | default("#333") }};
         --link-color: {{ kagami_link_color | default("#4160ff") }};
         --white-color: {{ kagami_white_color | default("#f7f7f7") }};
-        --sans-serif-font-family: {{ sans_serif_font_family | default('"Source Han Sans CN", sans-serif') }};
-        --serif-font-family: {{ serif_font_family | default('"Source Han Serif CN", serif;') }};
+        --sans-serif-font-family: {{ sans_serif_font_family | default('"Source Han Sans CN VF", sans-serif') }};
+        --serif-font-family: {{ serif_font_family | default('"Source Han Serif CN VF", serif;') }};
         --logo-image: url('{{ logo_image | default("/theme/images/lab_logo_hori_white.png") }}');
         --footer-gradient-start-color: {{ kagami_footer_gradient_start_color | default("#6b7dd6") }};
         --footer-gradient-end-color: {{ kagami_footer_gradient_end_color | default("#001689") }};
         --fill-background-image: url('{{ fill_background_image | default("/theme/images/light_toast.png") }}');
     }
     @font-face {
-        font-family: 'Source Han Sans CN';
-        font-weight: 300;
-        src: url('{{ font_base_path + "SourceHanSansCN-Light.woff2" }}');
+        font-family: 'Source Han Sans CN VF';
+        src: url('{{ font_base_path + "SourceHanSansCN-VF.ttf.woff2" }}');
     }
-
     @font-face {
-        font-family: 'Source Han Sans CN';
-        font-weight: 400;
-        src: url('{{ font_base_path + "SourceHanSansCN-Regular.woff2" }}');
-    }
-
-    @font-face {
-        font-family: 'Source Han Serif CN';
-        font-weight: 300;
-        src: url('{{ font_base_path + "SourceHanSerifCN-Light.woff2" }}');
-    }
-
-    @font-face {
-        font-family: 'Source Han Serif CN';
-        font-weight: 500;
-        src: url('{{ font_base_path + "SourceHanSerifCN-Medium.woff2" }}');
+        font-family: 'Source Han Serif CN VF';
+        src: url('{{ font_base_path + "SourceHanSerifCN-VF.ttf.woff2" }}');
     }
     @font-face {
         font-family: 'Fira Code';
-        font-weight: 400;
-        src: url('{{ font_base_path + "FiraCode-Regular.woff2" }}');
-    }
-    @font-face {
-        font-family: 'Fira Code';
-        font-weight: 700;
-        src: url('{{ font_base_path + "FiraCode-SemiBold.woff2" }}');
+        src: url('{{ font_base_path + "FiraCode-VF.woff2" }}');
     }
 </style>
