@@ -497,17 +497,24 @@ footer.bottom .footer-logo {
 
 .singular .hero-box-content {
     font-size: 16px;
-    font-weight: normal;
+    font-weight: 400;
     word-break: break-word;
 }
 
 .singular .hero-box-content p,
-.singular .hero-box-content .line {
+.singular .hero-box-content .line,
+.singular .hero-box-content li {
     line-height: 28px;
 }
 
 .singular .hero-box-content .center {
     text-align: center;
+}
+
+.singular .hero-box-content span.strike {
+    text-decoration: line-through;
+    text-decoration-color: #000;
+    text-decoration-style: solid 2px;
 }
 
 .singular .hero-box-content img {
@@ -546,13 +553,6 @@ footer.bottom .footer-logo {
     padding: 24px 40px;
 }
 
-/* .singular .hero-box-content pre code {
-    color: #333;
-    background: transparent;
-    text-shadow: 0 -1px 0 rgba(0,0,0,.12);
-    box-shadow: none;
-} */
-
 .singular .hero-box-content table {
     border-spacing: 0;
     border-collapse: collapse;
@@ -562,6 +562,53 @@ footer.bottom .footer-logo {
 .singular .hero-box-content th {
     border: 1px solid #e2e4f2;
     padding: 8px;
+}
+
+.singular .hero-box-content .admonition {
+    border-radius: 8px;
+    margin: 16px 0;
+    padding: 16px 24px;
+    font-size: 14px;
+}
+
+.singular .hero-box-content .admonition p {
+    margin: 0;
+}
+
+.singular .hero-box-content .admonition p.first {
+    font-size: 16px;
+    font-weight: 600;
+    margin-bottom: 8px;
+}
+
+.singular .hero-box-content .admonition.attention {
+    color: #084298;
+    background-color: #cfe2ff;
+    border: 1px solid #b6d4fe;
+}
+
+.singular .hero-box-content .admonition.note {
+    color: #41464b;
+    background-color: #e2e3e5;
+    border: 1px solid #d3d6d8;
+}
+
+.singular .hero-box-content .admonition.tip {
+    color: #0f5132;
+    background-color: #d1e7dd;
+    border: 1px solid #badbcc;
+}
+
+.singular .hero-box-content .admonition.warning {
+    color: #664d03;
+    background-color: #fff3cd;
+    border: 1px solid #ffecb5;
+}
+
+.singular .hero-box-content .admonition.danger {
+    color: #842029;
+    background-color: #f8d7da;
+    border: 1px solid #f5c2c7;
 }
 
 .singular .post-author {
@@ -613,7 +660,6 @@ footer.bottom .footer-logo {
     min-width: 20px;
 }
 
-
 /* Taxonomies */
 
 .author-title-wrapper {
@@ -626,10 +672,30 @@ footer.bottom .footer-logo {
 }
 
 /* Extra */
+
 .netease-music {
     display: block;
     margin: 0 auto;
     width: 80%;
+}
+
+.rainbow-animated {
+    background: linear-gradient(to right, #6666ff, #0099ff , #00ff00, #ff3399, #6666ff);
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+    animation: rainbow-animation 6s ease-in-out infinite;
+    background-size: 400% 100%;
+}
+
+@keyframes rainbow-animation {
+    0%,100% {
+        background-position: 0 0;
+    }
+
+    50% {
+        background-position: 100% 0;
+    }
 }
 
 /* Mobile */

@@ -1,7 +1,7 @@
 .. image:: https://img.shields.io/badge/python-%3E%3D3.10-6b7dd6
    :target: https://www.python.org/
 
-.. image:: https://img.shields.io/badge/pelican-v4.7%20tested-6b7dd6
+.. image:: https://img.shields.io/badge/pelican-v4.8%20tested-6b7dd6
    :target: https://www.python.org/
 
 .. image:: https://img.shields.io/badge/license-MIT-6b7dd6
