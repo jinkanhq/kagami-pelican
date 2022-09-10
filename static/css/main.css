@@ -44,7 +44,8 @@ a.btn {
 
 blockquote {
     border: 2px dotted var(--primary-color);
-    padding-left: 16px;
+    margin: 16px 40px;
+    padding: 8px 12px;
     background-color: #efeff2;
 }
 
