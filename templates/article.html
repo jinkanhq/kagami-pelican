@@ -12,14 +12,10 @@
     {{ translations.entry_hreflang(article) }}
   {% endif %}
 
-  {% if article.description %}
-    <meta name="description" content="{{article.description}}" />
-  {% endif %}
-
-  {% for tag in article.tags %}
-    <meta name="tags" content="{{tag}}" />
-  {% endfor %}
-
+  <meta name="description" content="{{ article.abstract }}" />
+  <meta property="og:title" content="{{ article.title  }}" />
+  <meta property="og:description" content="{{ article.abstract }} " />
+  <meta property="og:image" content="{{ article.feature }}" />
 {% endblock %}
 
 {% block main %}
@@ -58,4 +54,10 @@
     </div><!-- kagami:singular:hero-box -->
   </div><!-- kagami:fill -->
 </main>
+{% if KAGAMI_MATHJAX == "bootcdn" and article.mathjax == "enabled" %}
+<script src="https://cdn.bootcdn.net/ajax/libs/mathjax/3.2.2/es5/tex-mml-chtml.min.js"></script>
+{% endif %}
+{% if KAGAMI_MATHJAX == "jsdelivr" and article.mathjax == "enabled" %}
+<script src="https://cdn.jsdelivr.net/npm/mathjax@3.2.2/es5/tex-mml-chtml.min.js"></script>
+{% endif %}
 {% endblock %}
