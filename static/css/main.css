@@ -674,10 +674,14 @@ footer.bottom .footer-logo {
 
 /* Comments */
 
-#isso-thread img.avatar {
+.singular .hero-box-content .isso-comment>div.avatar {
+    width: 36px;
+}
+
+.singular .hero-box-content .isso-comment>div.avatar img {
     padding: 0;
-    border-radius: 40px;
-    border: none;
+    border: 0;
+    border-radius: 18px;
 }
 
 /* Extra */
